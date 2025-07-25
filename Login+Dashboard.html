@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login + Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: #fff;
+      border: 4px solid #007BFF;
+      border-radius: 10px;
+      padding: 40px;
+      width: 350px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      display: none;
+    }
+
+    .box.active {
+      display: block;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #007BFF;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 90%;
+      padding: 12px;
+      margin: 10px auto;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      display: block;
+    }
+
+    button {
+      width: 90%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      color: red;
+      margin-top: 10px;
+      min-height: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN VIEW -->
+  <div class="box active" id="login-box">
+    <div class="logo">IBRAHIM</div>
+    <input type="text" id="username" placeholder="Username" autocomplete="off" />
+    <input type="password" id="password" placeholder="Password" autocomplete="off" />
+    <button onclick="login()">Login</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div class="box" id="dashboard-box">
+    <h1>Welcome, <span id="welcome-name">Ibrahim</span>!</h1>
+    <p><strong>Username:</strong> ibrahim</p>
+    <p><strong>Password:</strong> Khan1234</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value;
+
+      if (user === "ibrahim" && pass === "Khan1234") {
+        document.getElementById("login-box").classList.remove("active");
+        document.getElementById("dashboard-box").classList.add("active");
+        document.getElementById("welcome-name").textContent = user;
+      } else {
+        document.getElementById("message").textContent = "Invalid username or password!";
+      }
+    }
+
+    function logout() {
+      document.getElementById("dashboard-box").classList.remove("active");
+      document.getElementById("login-box").classList.add("active");
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("message").textContent = "";
+    }
+  </script>
+
+</body>
+</html>
